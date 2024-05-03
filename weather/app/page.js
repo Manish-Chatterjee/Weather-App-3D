@@ -1,6 +1,11 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Image from 'next/image'
+import bgImg from '../public/bgImg.jpg'
+
+import { WiHumidity } from "react-icons/wi";
+
 
 
 const page = () => {
@@ -47,19 +52,73 @@ const page = () => {
 console.log(weather,'weather')
 
   return (
-    <div>
-      <input
-        type="text"
-        value={place}
-        onChange={(event) => setPlace(event.target.value)}
-        onKeyDown={handleKeyDown}  
-        placeholder="Enter place name..."
-      />
-      <p>temp:{weather?.main?.temp}</p>
-      <p>humidity:{weather?.main?.humidity}</p>
-      <p>pressure:{weather?.main?.pressure}</p>
-      <p>wind Deg:{weather?.wind?.deg}</p>
-      <p>wind Speed:{weather?.wind?.speed}</p>
+    <div className='main'>
+      <Image src={bgImg} alt='bg' layout='fill' objectFit='cover' objectPosition='center' />
+      <div className='container'>
+        <input
+          type="text"
+          value={place}
+          onChange={(event) => setPlace(event.target.value)}
+          onKeyDown={handleKeyDown}  
+          placeholder="place name"
+          className='placeName'
+        />
+        <div className='locationInfo'>
+          <div id='dataLeft'>
+            {/* <p id='temp'>temp:{weather?.main?.temp}</p> */}
+            <span className='dataDisplay'>
+              <p className='icons'><WiHumidity /></p>
+              <p className='iconsText'>humidity</p>
+              <p className='iconsNo'>{weather?.main?.humidity}</p>
+            </span>
+            <span className='dataDisplay'>
+              <p className='iconsText'>pressure</p>
+              <p className='iconsNo'>{weather?.main?.pressure}</p>
+            </span>
+            <span className='dataDisplay'>
+              <p className='iconsText'>visibility:</p>
+              <p className='iconsNo'>{weather?.visibility}</p>
+            </span>
+            <span className='dataDisplay'>
+              <p className='iconsText'>clouds</p>
+              <p className='iconsNo'>{weather?.clouds?.all}</p>
+            </span>
+            <span className='dataDisplay'>
+              <p className='iconsText'>timezone</p>
+              <p className='iconsNo'>{weather?.timezone}</p>
+            </span>
+          </div>
+          <div id='dataCenter'>
+          {weather?.weather?.map((data) => {
+              return(
+                <div id='cloudyStats'>
+                {/* <p>main:{data.main}</p> */}
+                <p>{data.description}</p>
+                </div>
+              )
+            })}
+            <div className='spline'>3D model</div>
+            {weather?.main?.temp &&
+            <p id='temp'>{Math.ceil(weather?.main?.temp)} ºC</p>}
+          </div>
+          <div id='dataRight'>
+            <p>wind Deg:{weather?.wind?.deg}</p>
+            <p>wind Speed:{weather?.wind?.speed}</p>
+            <p>wind Gust:{weather?.wind?.gust}</p>
+            {weather?.weather?.map((data) => {
+              return(
+                <div>
+                <p>main:{data.main}</p>
+                <p>description:{data.description}</p>
+                </div>
+              )
+            })}
+
+            <p>sunrise:{weather?.sys?.sunrise}</p>
+            <p>sunset:{weather?.sys?.sunset}</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
