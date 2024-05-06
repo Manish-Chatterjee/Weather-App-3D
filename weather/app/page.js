@@ -127,7 +127,14 @@ const scenes = {
             {/* <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" /> */}
             {/* Rainy */}
               {/* // (<Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" />) */}
-            {console.log(weather?.weather?.main,'data18')}
+            {weather?.weather?.map((data) => {
+              console.log(data.main,'data18')
+              if (data.main === "Clouds") {
+                return <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" />;
+              } else {
+                return <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" />;
+              }
+            })}
             {/* <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" /> */}
             {/* <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" /> */}
             </div>

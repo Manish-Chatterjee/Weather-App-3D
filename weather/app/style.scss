@@ -111,9 +111,12 @@ body{
                 .spline{
                     border: 2px solid  black;
                     height: 80%;
+                    
 
-                    display: grid;
-                    place-items: center;
+                    // canvas{
+                    //     background-color: antiquewhite;
+                    //     height: 80%;
+                    // }
                 }
 
                 #temp {
