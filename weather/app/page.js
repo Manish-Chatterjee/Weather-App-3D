@@ -28,9 +28,17 @@ const page = () => {
   const timezoneHours = Math.floor(weather?.timezone / 3600);
   const timezoneMinutes = Math.floor((weather?.timezone % 3600) / 60);
   const timezoneFormatted = `${timezoneHours}h : ${timezoneMinutes.toString().padStart(2, '0')}m`;
+  console.log(timezoneFormatted,'nan');
+  const timezoneCondition = timezoneFormatted !== 'NaNh : NaNm' ? timezoneFormatted : '--h : --m'
 
   const sunriseTime = new Date(weather?.sys?.sunrise * 1000); // convert Unix time to JavaScript Date object
-  const formattedTime = sunriseTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hourCycle: 'h12' });
+  const sunriseformattedTime = sunriseTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hourCycle: 'h12' });
+  const sunriseTimeDisplay = sunriseformattedTime === 'Invalid Date' ? '--:--' : sunriseformattedTime
+  console.log(sunriseTimeDisplay,'sunrise')
+
+  const sunsetTime = new Date(weather?.sys?.sunset * 1000); // convert Unix time to JavaScript Date object
+  const sunsetformattedTime = sunsetTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hourCycle: 'h12' });
+  const sunsetTimeDisplay = sunsetformattedTime === 'Invalid Date' ? '--:--' : sunsetformattedTime
 
 
   useEffect(() => {
@@ -87,27 +95,29 @@ const scenes = {
             <span className='dataDisplay'>
               <p className='icons'></p>
               <p className='iconsText'>humidity</p>
-              <p className='iconsNo'>{weather?.main?.humidity}</p>
+              <p className='iconsNo'>{weather?.main?.humidity !== undefined ? weather?.main?.humidity +' %' : '--'}</p>
             </span>
             <span className='dataDisplay'>
             <p className='icons'></p>
               <p className='iconsText'>pressure</p>
-              <p className='iconsNo'>{weather?.main?.pressure}</p>
+              <p className='iconsNo'>{weather?.main?.pressure !== undefined ? weather?.main?.pressure +' hPa' : '--'}</p>
             </span>
             <span className='dataDisplay'>
             <p className='icons'></p>
               <p className='iconsText'>visibility</p>
-              <p className='iconsNo'>{weather?.visibility}</p>
+              <p className='iconsNo'>{weather?.visibility !== undefined ? (weather?.visibility / 1000).toFixed(1) +' km' : '--'}</p>
             </span>
             <span className='dataDisplay'>
             <p className='icons'></p>
               <p className='iconsText'>clouds</p>
-              <p className='iconsNo'>{weather?.clouds?.all}</p>
+              <p className='iconsNo'>{weather?.clouds?.all !== undefined ? weather?.clouds?.all +' %' : '--'}</p>
             </span>
             <span className='dataDisplay'>
-            <p className='icons'></p>
-              <p className='iconsText'>timezone</p>
-              <p className='iconsNo'>{timezoneFormatted}</p>
+              <p className='icons'></p>
+              <p className='iconsText'>sunrise</p>
+              {/* <p className='iconsNo'>{weather?.sys?.sunrise}</p> */}
+              {/* <p className='iconsNo'>{`${Math.floor(weather?.sys?.sunrise / 3600) % 24}:${Math.floor((weather?.sys?.sunrise / 60) % 60).toString().padStart(2, '0')}:${(weather?.sys?.sunrise % 60).toString().padStart(2, '0')}`}</p> */}
+              <p className='iconsNo'>{sunriseTimeDisplay}</p>
             </span>
           </div>
           <div id='dataCenter'>
@@ -129,11 +139,12 @@ const scenes = {
               {/* // (<Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" />) */}
             {weather?.weather?.map((data) => {
               console.log(data.main,'data18')
-              if (data.main === "Clouds") {
-                return <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" />;
-              } else {
-                return <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" />;
-              }
+              // if (data.main === "Clouds") {
+              //   return <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" />;
+              // } else {
+              //   return <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" />;
+              // }
+              return(<Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" />)
             })}
             {/* <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" /> */}
             {/* <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" /> */}
@@ -145,17 +156,17 @@ const scenes = {
             <span className='dataDisplay'>
               <p className='icons'></p>
               <p className='iconsText'>wind Deg</p>
-              <p className='iconsNo'>{weather?.wind?.deg}</p>
+              <p className='iconsNo'>{weather?.wind?.deg !== undefined ? weather?.wind?.deg +' °' : '--'}</p>
             </span>
             <span className='dataDisplay'>
               <p className='icons'></p>
               <p className='iconsText'>wind Speed</p>
-              <p className='iconsNo'>{weather?.wind?.speed}</p>
+              <p className='iconsNo'>{weather?.wind?.speed !== undefined ? weather?.wind?.speed +' m/s' : '--'}</p>
             </span>
             <span className='dataDisplay'>
               <p className='icons'></p>
               <p className='iconsText'>wind Gust</p>
-              <p className='iconsNo'>{weather?.wind?.gust}</p>
+              <p className='iconsNo'>{weather?.wind?.gust !== undefined ? weather?.wind?.gust +' m/s' : '--'}</p>
             </span>
             {/* {weather?.weather?.map((data) => {
               return(
@@ -166,18 +177,18 @@ const scenes = {
               )
             })} */}
 
+
             <span className='dataDisplay'>
               <p className='icons'></p>
-              <p className='iconsText'>sunrise</p>
-              <p className='iconsNo'>{weather?.sys?.sunrise}</p>
-              <p className='iconsNo'>{`${Math.floor(weather?.sys?.sunrise / 3600) % 24}:${Math.floor((weather?.sys?.sunrise / 60) % 60).toString().padStart(2, '0')}:${(weather?.sys?.sunrise % 60).toString().padStart(2, '0')}`}</p>
-              <p className='iconsNo'>{formattedTime}</p>
+              <p className='iconsText'>timezone</p>
+              <p className='iconsNo'>{timezoneCondition}</p>
             </span>
             <span className='dataDisplay'>
               <p className='icons'></p>
               <p className='iconsText'>sunset</p>
-              <p className='iconsNo'>{weather?.sys?.sunset}</p>
-              <p className='iconsNo'>{`${Math.floor(weather?.sys?.sunset / 3600) % 24}:${Math.floor((weather?.sys?.sunset / 60) % 60).toString().padStart(2, '0')}:${(weather?.sys?.sunset % 60).toString().padStart(2, '0')}`}</p>
+              {/* <p className='iconsNo'>{weather?.sys?.sunset}</p> */}
+              {/* <p className='iconsNo'>{`${Math.floor(weather?.sys?.sunset / 3600) % 24}:${Math.floor((weather?.sys?.sunset / 60) % 60).toString().padStart(2, '0')}:${(weather?.sys?.sunset % 60).toString().padStart(2, '0')}`}</p> */}
+              <p className='iconsNo'>{sunsetTimeDisplay}</p>
             </span>
           </div>
         </div>
