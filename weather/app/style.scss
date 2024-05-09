@@ -109,7 +109,8 @@ body{
                 }
 
                 .spline{
-                    // border: 2px solid  black;
+                    display: grid;
+                    place-content: center;
                     height: 80%;
                     
                 }
@@ -182,12 +183,54 @@ body{
         }
 
     }
+
+    .message{
+        display: none;
+    }
+
+    .info {
+        position: absolute;
+        bottom: 30px;
+        font-style: italic;
+        filter: drop-shadow(0 0 5px rgb(145, 178, 255));
+        font-weight: 600;
+        color: rgb(59, 59, 59);
+    }
 }
 
-// .glass {
-//     position: absolute;
-//     height: 70vh;
-//     aspect-ratio: 4/2.3;
-//     background-color: antiquewhite;
-//     // z-index: 1;
-// }
+@media (width < 1280px)  {
+    .main {
+      .container {
+        display: none;
+      }
+
+      .message {
+        display: block;
+        font-size: 24px;
+        text-align: center;
+        padding: 20px;
+
+        z-index: 10;
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        border-radius: 15px;
+        font-weight: 600;
+        color: rgb(65, 65, 65);
+
+      }
+
+      .info {
+        display: none;
+      }
+     }
+
+   }
+
+@media (width > 1400px) {
+    .main {
+        .container {
+            height: 550px;
+            aspect-ratio: 4/2;
+        }
+    }
+}
