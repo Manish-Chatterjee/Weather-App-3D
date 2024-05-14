@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
 import bgImg from '../public/bgImg.jpg'
-
-import { WiHumidity } from "react-icons/wi";
 import Spline from '@splinetool/react-spline';
-
-
 
 const page = () => {
 
@@ -83,16 +79,6 @@ const page = () => {
     fetchWeatherData();
   }, [lat,lon]);
 
-console.log(weather,'weather')
-
-// const scenes = {
-//   scene1: 'https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode',
-//   scene2: 'https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode',
-// }
-
-// const data = {
-//   main: 'rain',
-// };
 
   return (
     <div>
@@ -145,33 +131,9 @@ console.log(weather,'weather')
                 {firstWeatherDescription}
               </div>
               <div className='spline'>
-              {/* <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" /> */}
-              {/* <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" /> */}
-              {/* Rainy */}
-                {/* // (<Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" />) */}
-
-
-              {/* {weather?.weather?.map((data) => {
-                console.log(data.main,'data18')
-                if (data.main === "Rain" || "Thunderstorm") {
-                  return <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" />;
-                } else if (data.main === "Clouds") {
-                  return <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" />;
-                } else {
-                  return <Spline scene="https://prod.spline.design/lcd1KzMAgj02Gz-s/scene.splinecode" />;
-                }
-                // return(<Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" />)
-              })} */}
-
-
-                {/* {firstWeatherData === "Rain" || "Thunderstorm" ? <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" /> :null}
-                {firstWeatherData === "Clouds" ? <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" /> :null}
-                {firstWeatherData === "Clear" ? <Spline scene="https://prod.spline.design/lcd1KzMAgj02Gz-s/scene.splinecode" /> :null} */}
 
                 {getWeatherScene()}
 
-              {/* <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" /> */}
-              {/* <Spline scene="https://prod.spline.design/aFEUjLWaT3f-AR5G/scene.splinecode" /> */}
               </div>
               {weather?.main?.temp &&
               <p id='temp'>{Math.ceil(weather?.main?.temp)} ºC</p>}
@@ -192,16 +154,6 @@ console.log(weather,'weather')
                 <p className='iconsText'>wind Gust</p>
                 <p className='iconsNo'>{weather?.wind?.gust !== undefined ? weather?.wind?.gust +' m/s' : '--'}</p>
               </span>
-              {/* {weather?.weather?.map((data) => {
-                return(
-                  <div>
-                  <p>main:{data.main}</p>
-                  <p>description:{data.description}</p>
-                  </div>
-                )
-              })} */}
-
-
               <span className='dataDisplay'>
                 <p className='icons'></p>
                 <p className='iconsText'>timezone</p>
@@ -210,8 +162,6 @@ console.log(weather,'weather')
               <span className='dataDisplay'>
                 <p className='icons'></p>
                 <p className='iconsText'>sunset</p>
-                {/* <p className='iconsNo'>{weather?.sys?.sunset}</p> */}
-                {/* <p className='iconsNo'>{`${Math.floor(weather?.sys?.sunset / 3600) % 24}:${Math.floor((weather?.sys?.sunset / 60) % 60).toString().padStart(2, '0')}:${(weather?.sys?.sunset % 60).toString().padStart(2, '0')}`}</p> */}
                 <p className='iconsNo'>{sunsetTimeDisplay}</p>
               </span>
             </div>
