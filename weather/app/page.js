@@ -41,6 +41,7 @@ const page = () => {
   const sunsetTimeDisplay = sunsetformattedTime === 'Invalid Date' ? '--:--' : sunsetformattedTime
 
   const firstWeatherData = weather?.weather?.[0].main;
+  const firstWeatherDescription = weather?.weather?.[0].description;
   console.log(firstWeatherData,'data24')
 
   const getWeatherScene = () => {
@@ -55,6 +56,7 @@ const page = () => {
     }
   };
 
+  console.log(process.env.NEXT_PUBLIC_REACT_APP_API_KEY,'key')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -140,14 +142,7 @@ console.log(weather,'weather')
             <div id='dataCenter'>
               <div id='cloudyStats'>
 
-                {weather?.weather?.map((data) => {
-                    return(
-                      <div>
-                      {/* <p>main:{data.main}</p> */}
-                      <p>{data.description}</p>
-                      </div>
-                    )
-                })}
+                {firstWeatherDescription}
               </div>
               <div className='spline'>
               {/* <Spline scene="https://prod.spline.design/CHCTlddJ5h1K3hfr/scene.splinecode" /> */}
