@@ -5,6 +5,7 @@ import Image from 'next/image'
 import bgImg from '../public/bgImg.jpg'
 import Spline from '@splinetool/react-spline';
 
+
 const WeatherApp = () => {
 
   const [place,setPlace] = useState('')
@@ -40,7 +41,7 @@ const WeatherApp = () => {
     };
     fetchWeatherData();
   }, [lat,lon]);
-  
+
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -51,13 +52,11 @@ const WeatherApp = () => {
   const timezoneHours = Math.floor(weather?.timezone / 3600);
   const timezoneMinutes = Math.floor((weather?.timezone % 3600) / 60);
   const timezoneFormatted = `${timezoneHours}h : ${timezoneMinutes.toString().padStart(2, '0')}m`;
-  console.log(timezoneFormatted,'nan');
   const timezoneCondition = timezoneFormatted !== 'NaNh : NaNm' ? timezoneFormatted : '--h : --m'
 
   const sunriseTime = new Date(weather?.sys?.sunrise * 1000); // convert Unix time to JavaScript Date object
   const sunriseformattedTime = sunriseTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hourCycle: 'h12' });
   const sunriseTimeDisplay = sunriseformattedTime === 'Invalid Date' ? '--:--' : sunriseformattedTime
-  console.log(sunriseTimeDisplay,'sunrise')
 
   const sunsetTime = new Date(weather?.sys?.sunset * 1000); // convert Unix time to JavaScript Date object
   const sunsetformattedTime = sunsetTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hourCycle: 'h12' });
@@ -65,7 +64,6 @@ const WeatherApp = () => {
 
   const firstWeatherData = weather?.weather?.[0].main;
   const firstWeatherDescription = weather?.weather?.[0].description;
-  console.log(firstWeatherData,'data24')
 
   const getWeatherScene = () => {
     if (firstWeatherData === "Rain" || firstWeatherData === "Thunderstorm") {
@@ -78,8 +76,6 @@ const WeatherApp = () => {
       return null;
     }
   };
-
-  console.log(process.env.NEXT_PUBLIC_REACT_APP_API_KEY,'key')
 
 
   return (
@@ -122,8 +118,6 @@ const WeatherApp = () => {
               <span className='dataDisplay'>
                 <p className='icons'></p>
                 <p className='iconsText'>sunrise</p>
-                {/* <p className='iconsNo'>{weather?.sys?.sunrise}</p> */}
-                {/* <p className='iconsNo'>{`${Math.floor(weather?.sys?.sunrise / 3600) % 24}:${Math.floor((weather?.sys?.sunrise / 60) % 60).toString().padStart(2, '0')}:${(weather?.sys?.sunrise % 60).toString().padStart(2, '0')}`}</p> */}
                 <p className='iconsNo'>{sunriseTimeDisplay}</p>
               </span>
             </div>
@@ -174,5 +168,6 @@ const WeatherApp = () => {
     </div>
   )
 }
+
 
 export default WeatherApp
