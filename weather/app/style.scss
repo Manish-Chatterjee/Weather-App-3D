@@ -184,9 +184,9 @@ body{
 
     }
 
-    .message{
-        display: none;
-    }
+    // .message{
+    //     display: none;
+    // }
 
     .info {
         position: absolute;
@@ -198,33 +198,88 @@ body{
     }
 }
 
-@media (width < 1280px)  {
-    .main {
-      .container {
-        display: none;
-      }
+// @media (width < 1280px)  {
+//     .main {
+//     //   .container {
+//     //     display: none;
+//     //   }
 
-      .message {
-        display: block;
-        font-size: 24px;
-        text-align: center;
-        padding: 20px;
+//       .message {
+//         display: block;
+//         font-size: 24px;
+//         text-align: center;
+//         padding: 20px;
 
-        z-index: 10;
-        backdrop-filter: blur(15px);
-        padding: 20px;
-        border-radius: 15px;
-        font-weight: 600;
-        color: rgb(65, 65, 65);
+//         z-index: 10;
+//         backdrop-filter: blur(15px);
+//         padding: 20px;
+//         border-radius: 15px;
+//         font-weight: 600;
+//         color: rgb(65, 65, 65);
 
-      }
+//       }
 
-      .info {
-        display: none;
-      }
-     }
+//       .info {
+//         display: none;
+//       }
+//      }
 
-   }
+//    }
+
+@media (380px < width < 440px) {
+    .main{
+        display: flex;
+        align-items: flex-start; 
+
+
+        .container{
+            height: auto;
+            width: 100%;
+
+            .locationInfo{
+                display: flex;
+                flex-wrap: wrap;
+
+                #dataLeft {
+                    margin-top: 60px;
+                    width: 50%;
+                    display: flex;
+                    overflow: scroll;
+
+                    .dataDisplay {
+                        margin-bottom: 40px;
+                    }
+                }
+                #dataCenter{
+                    width: 100%;
+                    order: -1;
+                }
+                #dataRight{
+                    margin-top: 60px;
+                    width: 50%;
+                    display: flex;
+                    overflow: scroll;
+
+                    .dataDisplay {
+                        margin-bottom: 40px;
+                    }
+                }
+            }
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .info {
+            bottom: 0px;
+            font-size: 16px;
+
+            text-align: center;
+            backdrop-filter: blur(15px);
+        }
+    }
+}
 
 @media (width > 1400px) {
     .main {
