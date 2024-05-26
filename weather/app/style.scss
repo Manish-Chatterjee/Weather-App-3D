@@ -4,7 +4,6 @@ body{
 }
 .main {
     text-transform: uppercase;
-    /* background-image: url(../public/bg.jpg); */
     width: 100vw;
     height: 100vh;
     background-color: antiquewhite ;
@@ -50,20 +49,16 @@ body{
             margin-top: 20px;
 
             #dataLeft {
-                // background-color: orchid;
                 aspect-ratio: 2/3;
-                // height: 70%;
 
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-evenly;
-                // align-items: center;
 
                 .dataDisplay {
                     height: 100px;
                     width: 100px;
                     aspect-ratio:  1/1;
-                    // border: 1px solid rgb(255, 178, 178);
 
                     display: flex;
                     flex-direction: column;
@@ -96,7 +91,6 @@ body{
     
             #dataCenter {
                 aspect-ratio: 1/1;
-                // height: 70%;
 
                 #cloudyStats {
                     height: 10%;
@@ -116,15 +110,6 @@ body{
                 }
 
                 #temp {
-                    // border-radius: 20px;
-                    // background: linear-gradient(225deg, #f0f0f0, #cacaca);
-                    // box-shadow:  -10px 10px 20px #a8a8a8,
-                    //             10px -10px 20px #ffffff;
-                    
-                    // height: 100px;
-                    // width: 100px;
-
-                    // border: 1px solid beige;
                     height: 10%;
                     margin: 0;
 
@@ -138,7 +123,6 @@ body{
     
             #dataRight {
                 aspect-ratio: 2/3;
-                // height: 70%;
 
                 display: flex;
                 flex-wrap: wrap;
@@ -148,7 +132,6 @@ body{
                     height: 100px;
                     width: 100px;
                     aspect-ratio:  1/1;
-                    // border: 1px solid rgb(255, 178, 178);
 
                     display: flex;
                     flex-direction: column;
@@ -184,9 +167,6 @@ body{
 
     }
 
-    // .message{
-    //     display: none;
-    // }
 
     .info {
         position: absolute;
@@ -196,44 +176,21 @@ body{
         font-weight: 600;
         color: rgb(59, 59, 59);
     }
+
+    .message{
+        display: none;
+    }
 }
 
-// @media (width < 1280px)  {
-//     .main {
-//     //   .container {
-//     //     display: none;
-//     //   }
 
-//       .message {
-//         display: block;
-//         font-size: 24px;
-//         text-align: center;
-//         padding: 20px;
-
-//         z-index: 10;
-//         backdrop-filter: blur(15px);
-//         padding: 20px;
-//         border-radius: 15px;
-//         font-weight: 600;
-//         color: rgb(65, 65, 65);
-
-//       }
-
-//       .info {
-//         display: none;
-//       }
-//      }
-
-//    }
-
-@media (380px < width < 440px) {
+@media (max-width : 440px) and (orientation:portrait) {
     .main{
         display: flex;
         align-items: flex-start; 
 
 
         .container{
-            height: auto;
+            height: 100%;
             width: 100%;
 
             .locationInfo{
@@ -281,7 +238,96 @@ body{
     }
 }
 
-@media (width > 1400px) {
+@media (max-height : 440px) and (orientation:landscape) {
+    .main{
+        .container{
+            display: none;
+        }
+        .info{
+            display: none;
+        }
+        .message {
+            display: block;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+
+            z-index: 10;
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: 600;
+            color: rgb(65, 65, 65);
+        }
+    }
+}
+
+
+@media (min-width: 441px) and (max-width: 1280px) and (orientation:portrait) {
+    .main{
+        display: flex;
+        align-items: flex-start; 
+
+
+        .container{
+            height: 100%;
+            width: 100%;
+
+            .locationInfo{
+                display: flex;
+                flex-wrap: wrap;
+                height: 90%;
+
+                #dataLeft {
+                    width: 50%;
+                    display: flex;
+                    margin-top: 30px;
+
+                    overflow: scroll;
+                    height: 50%;
+
+                    .dataDisplay {
+                        height: 30%;
+                        width: 35%;
+                        margin-bottom: 20px;
+                    }
+                }
+                #dataCenter{
+                    width: 55%;
+                    order: -1;
+                }
+                #dataRight{
+                    width: 50%;
+                    display: flex;
+                    margin-top: 30px;
+                    
+                    overflow: scroll;
+                    height: 50%;
+
+                    .dataDisplay {
+                        height: 30%;
+                        width: 35%;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .info {
+            bottom: 0px;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(15px);
+        }
+    }
+}
+
+@media (min-width: 1400px) {
     .main {
         .container {
             height: 550px;
