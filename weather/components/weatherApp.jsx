@@ -82,7 +82,7 @@ const WeatherApp = () => {
     <div>
       <div className='main'>
         <Image src={bgImg} alt='bg' layout='fill' objectFit='cover' objectPosition='center' />
-        <div className="message"><p>these app better runs on desktop</p></div>
+        <div className="message"><p>change to portrait</p></div>
         <div className='container'>
           <input
             type="text"
@@ -94,7 +94,6 @@ const WeatherApp = () => {
           />
           <div className='locationInfo'>
             <div id='dataLeft'>
-              {/* <p id='temp'>temp:{weather?.main?.temp}</p> */}
               <span className='dataDisplay'>
                 <p className='icons'></p>
                 <p className='iconsText'>humidity</p>
