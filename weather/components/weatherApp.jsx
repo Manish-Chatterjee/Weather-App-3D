@@ -4,6 +4,7 @@ import axios from 'axios'
 import Image from 'next/image'
 import bgImg from '../public/bgImg.jpg'
 import Spline from '@splinetool/react-spline';
+import { FaKey } from "react-icons/fa";
 
 
 const WeatherApp = () => {
@@ -12,15 +13,21 @@ const WeatherApp = () => {
   const [query,setQuery] = useState('')
   const [location,setLocation] = useState('')
   const [weather,setWeather] = useState('')
-  
+  const [apiKey, setApiKey] = useState('');
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
 
   const lat = location[0]?.lat;
   const lon = location[0]?.lon;
 
+
+  const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
+  const baseGeo = "http://api.openweathermap.org/geo/1.0/direct";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}?q=${query}&appid=${process.env.NEXT_PUBLIC_REACT_APP_API_KEY}`);
+        const response = await axios.get(`${baseGeo}?q=${query}&appid=${apiKey}`);
         setLocation(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -28,12 +35,12 @@ const WeatherApp = () => {
     };
   
     fetchData();
-  }, [query]);
+  }, [query, apiKey]);
   
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_WEATHER_API}?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.NEXT_PUBLIC_REACT_APP_API_KEY}`);
+        const response = await axios.get(`${baseUrl}?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`);
         setWeather(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -48,6 +55,19 @@ const WeatherApp = () => {
       setQuery(place)
     }
   }
+
+  const handleApiKeyChange = (e) => {
+    setApiKey(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+  }
+
+
+  const handleButtonClick = () => {
+    setIsButtonClicked(!isButtonClicked);
+  };
 
   const timezoneHours = Math.floor(weather?.timezone / 3600);
   const timezoneMinutes = Math.floor((weather?.timezone % 3600) / 60);
@@ -163,7 +183,23 @@ const WeatherApp = () => {
           </div>
         </div>
         <div className='info'>sunrise and sunset timings are based on local time</div>
+
+
+
       </div>
+        <div className='key'>
+          <form onSubmit={handleSubmit}>
+            <label>
+              <button id='key'  onClick={handleButtonClick}><FaKey /></button>
+              <input type="text" value={apiKey} placeholder='API KEY' onChange={handleApiKeyChange} className={isButtonClicked ? 'clicked' : 'shrinked'}/>
+            </label>
+            <br />
+            <button 
+            type="submit" style={{display:"none"}}>Submit</button>
+
+
+          </form>
+        </div>
     </div>
   )
 }
