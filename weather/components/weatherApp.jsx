@@ -22,7 +22,7 @@ const WeatherApp = () => {
 
 
   const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
-  const baseGeo = "http://api.openweathermap.org/geo/1.0/direct";
+  const baseGeo = "https://api.openweathermap.org/geo/1.0/direct";
 
   useEffect(() => {
     const fetchData = async () => {
