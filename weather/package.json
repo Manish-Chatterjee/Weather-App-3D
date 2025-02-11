@@ -15,7 +15,7 @@
     "@splinetool/react-spline": "^2.2.6",
     "axios": "^1.7.4",
     "dotenv": "^16.4.5",
-    "next": "14.2.10",
+    "next": "14.2.21",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.0",
