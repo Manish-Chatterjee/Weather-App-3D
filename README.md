@@ -1,4 +1,6 @@
 
+![48EA80F6-6697-4056-9428-43D0C0CEF582](https://github.com/user-attachments/assets/be818940-65e0-4518-8ac7-212259c10599)
+
 <h1 style="text-decoration: none; border-bottom: none; filter:drop-shadow(0 0 5px #e0aa62ff); color: #fce06fff; text-align: center; border-block: 5px double; line-height: 60px; border-radius: 10%; margin-bottom: 50px">
 Weather App 3D</h1>
 
@@ -19,7 +21,7 @@ Tech Stack</h2>
 
 <div align="center" style="border-inline: 2px solid gray; border-radius: 10px; margin-inline: 30px; margin-block: 35px">
 
-![Next](https://img.shields.io/badge/next-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=%000000)
+![Next](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React Bootstrap](https://img.shields.io/badge/React--Bootstrap-7952B3?style=for-the-badge&logo=reactbootstrap&logoColor=41E0FD)
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
 ![Sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
