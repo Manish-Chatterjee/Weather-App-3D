@@ -3,14 +3,14 @@
 
 
 <h1 style="text-decoration: none; border-bottom: none; filter:drop-shadow(0 0 5px #e0aa62ff); color: #fce06fff; text-align: center; border-block: 5px double; line-height: 60px; border-radius: 10%; margin-bottom: 50px">
-Weather App 3D</h1>
+Weather Now</h1>
 
 <h2 style="border: 0.1px solid white; font-family: Sail; box-shadow: 0 0 10px white; border-radius: 5px; width: fit-content; padding: 5px 7px; margin-block: 20px">
 Description</h2>
 
 <div style="margin-left: 30px; margin-block: 30px">
 
-_Weather App 3D is a simple weather forecast app which uses weather api to fetch the data from a key provided, and taking advantage of Nextjs and Spline, which is a 3D modeling tool highly compatible and easy to use with javascript framework and library._
+_Weather Now is a simple weather forecast app which uses weather api to fetch the data from a key provided, and taking advantage of Nextjs and Spline, which is a 3D modeling tool highly compatible and easy to use with javascript framework and library._
 
 </div>
 
@@ -110,5 +110,6 @@ Instructions on how to run the project:
 ```bash
 npm run dev
 ```
+NOTE: Also get the api key from the "Open Weather Map" website (https://openweathermap.org/) by signing into your account.
 </div>
 
