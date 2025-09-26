@@ -56,7 +56,7 @@ const WeatherApp = () => {
       }
     };
     fetchWeatherData();
-  }, [lat, lon, apiKey]);
+  }, [lat, lon]);
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
