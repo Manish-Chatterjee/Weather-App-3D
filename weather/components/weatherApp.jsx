@@ -11,10 +11,13 @@ const WeatherApp = () => {
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState("");
-  const [apiKey, setApiKey] = useState(() => {
-    return localStorage.getItem("apiKey") || "";
-  });
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [apiKey, setApiKey] = useState("");
+
+  useEffect(() => {
+    const storedKey = localStorage.getItem("apiKey");
+    if (storedKey) setApiKey(storedKey);
+  }, []);
 
   // Save to localStorage whenever apiKey changes
   useEffect(() => {
@@ -129,9 +132,9 @@ const WeatherApp = () => {
         <Image
           src={bgImg}
           alt="bg"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{ objectFit: "cover", objectPosition: "center" }}
+          priority
         />
         <div className="message">
           <p>change to portrait</p>
