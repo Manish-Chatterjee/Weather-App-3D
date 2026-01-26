@@ -4,6 +4,11 @@ body {
 
   overflow: hidden;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 .main {
   text-transform: uppercase;
   width: 100vw;
@@ -42,18 +47,35 @@ body {
     }
 
     .locationInfo {
-      display: flex;
+      // display: flex;
       width: 100%;
       height: 80%;
-      justify-content: space-around;
+      // justify-content: space-around;
       margin-top: 20px;
 
-      #dataLeft {
-        aspect-ratio: 2/3;
+      overflow: scroll;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas: "dataLeft dataCenter dataRight";
 
+      .dataInner {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      #dataLeft {
+        // aspect-ratio: 2/3;
+
+        // display: flex;
+        // flex-wrap: wrap;
+        // justify-content: space-evenly;
+
+        display: grid;
+        grid-area: dataLeft;
+        // border: 5px dashed red;
+        // width: 100px;
 
         .dataDisplay {
           height: 100px;
@@ -67,9 +89,12 @@ body {
 
           border-radius: 20px;
           background: #e0e0e07b;
-          box-shadow: -10px 10px 20px #bebebe65, 10px -10px 20px #ffffff66;
+          box-shadow:
+            -10px 10px 20px #bebebe65,
+            10px -10px 20px #ffffff66;
 
           padding: 5px;
+          margin: 5px;
 
           .icons {
             color: #fff;
@@ -89,26 +114,33 @@ body {
       }
 
       #dataCenter {
-        aspect-ratio: 1/1;
+        // aspect-ratio: 1/1;
+
+        // display: grid;
+        grid-area: dataCenter;
+        // border: 5px dashed green;
+        // width: 100px;
 
         #cloudyStats {
-          height: 10%;
+          // height: 10%;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
           margin: 0;
           padding: 0;
+          // border: 2px solid gray;
         }
 
         .spline {
           display: grid;
           place-content: center;
           height: 80%;
+          // border: 2px solid gray;
         }
 
         #temp {
-          height: 10%;
+          // height: 10%;
           margin: 0;
 
           display: grid;
@@ -116,15 +148,21 @@ body {
           font-size: 44px;
           font-weight: 800;
           color: rgb(64, 64, 64);
+          // border: 2px solid gray;
         }
       }
 
       #dataRight {
-        aspect-ratio: 2/3;
+        // aspect-ratio: 2/3;
 
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
+        // display: flex;
+        // flex-wrap: wrap;
+        // justify-content: space-evenly;
+
+        display: grid;
+        grid-area: dataRight;
+        // border: 5px dashed blue;
+        // width: 100px;
 
         .dataDisplay {
           height: 100px;
@@ -138,9 +176,12 @@ body {
 
           border-radius: 20px;
           background: #e0e0e07b;
-          box-shadow: -10px 10px 20px #bebebe65, 10px -10px 20px #ffffff66;
+          box-shadow:
+            -10px 10px 20px #bebebe65,
+            10px -10px 20px #ffffff66;
 
           padding: 5px;
+          margin: 5px;
 
           .icons {
             color: #fff;
@@ -385,40 +426,60 @@ body {
       width: 100%;
 
       .locationInfo {
-        display: flex;
-        flex-wrap: wrap;
+        // display: flex;
+        // flex-wrap: wrap;
         height: 90%;
 
+        display: grid;
+        // grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: "dataCenter dataCenter" "dataLeft dataRight";
+
         #dataLeft {
-          width: 50%;
+          // width: 50%;
           display: flex;
           margin-top: 30px;
 
           overflow: scroll;
-          height: 50%;
+          // height: 50%;
+          width: 50vw;
+          margin-bottom: 40px;
 
           .dataDisplay {
-            height: 30%;
-            width: 35%;
+            // height: 30%;
+            // width: 35%;
             margin-bottom: 20px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            width: 200px;
+            // aspect-ratio: 1/1;
           }
         }
         #dataCenter {
-          width: 55%;
+          // width: 55%;
           order: -1;
         }
         #dataRight {
-          width: 50%;
+          // width: 50%;
           display: flex;
           margin-top: 30px;
 
           overflow: scroll;
-          height: 50%;
+          // height: 50%;
+
+          width: 50vw;
+          margin-bottom: 40px;
 
           .dataDisplay {
-            height: 30%;
-            width: 35%;
+            // height: 30%;
+            // width: 35%;
             margin-bottom: 20px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            width: 200px;
           }
         }
       }
@@ -448,5 +509,9 @@ body {
       height: 550px;
       aspect-ratio: 4/2;
     }
+  }
+
+  .dataDisplay {
+    border: 2px solid transparent;
   }
 }

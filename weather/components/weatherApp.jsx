@@ -36,7 +36,7 @@ const WeatherApp = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${baseGeo}?q=${query}&appid=${apiKey}`
+          `${baseGeo}?q=${query}&appid=${apiKey}`,
         );
         setLocation(response.data);
       } catch (error) {
@@ -51,7 +51,7 @@ const WeatherApp = () => {
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get(
-          `${baseUrl}?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+          `${baseUrl}?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`,
         );
         setWeather(response.data);
       } catch (error) {
@@ -127,7 +127,7 @@ const WeatherApp = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="main">
         <Image
           src={bgImg}
@@ -150,47 +150,49 @@ const WeatherApp = () => {
           />
           <div className="locationInfo">
             <div id="dataLeft">
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">humidity</p>
-                <p className="iconsNo">
-                  {weather?.main?.humidity !== undefined
-                    ? weather?.main?.humidity + " %"
-                    : "--"}
-                </p>
-              </span>
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">pressure</p>
-                <p className="iconsNo">
-                  {weather?.main?.pressure !== undefined
-                    ? weather?.main?.pressure + " hPa"
-                    : "--"}
-                </p>
-              </span>
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">visibility</p>
-                <p className="iconsNo">
-                  {weather?.visibility !== undefined
-                    ? (weather?.visibility / 1000).toFixed(1) + " km"
-                    : "--"}
-                </p>
-              </span>
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">clouds</p>
-                <p className="iconsNo">
-                  {weather?.clouds?.all !== undefined
-                    ? weather?.clouds?.all + " %"
-                    : "--"}
-                </p>
-              </span>
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">sunrise</p>
-                <p className="iconsNo">{sunriseTimeDisplay}</p>
-              </span>
+              <div className="dataInner">
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">humidity</p>
+                  <p className="iconsNo">
+                    {weather?.main?.humidity !== undefined
+                      ? weather?.main?.humidity + " %"
+                      : "--"}
+                  </p>
+                </span>
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">pressure</p>
+                  <p className="iconsNo">
+                    {weather?.main?.pressure !== undefined
+                      ? weather?.main?.pressure + " hPa"
+                      : "--"}
+                  </p>
+                </span>
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">visibility</p>
+                  <p className="iconsNo">
+                    {weather?.visibility !== undefined
+                      ? (weather?.visibility / 1000).toFixed(1) + " km"
+                      : "--"}
+                  </p>
+                </span>
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">clouds</p>
+                  <p className="iconsNo">
+                    {weather?.clouds?.all !== undefined
+                      ? weather?.clouds?.all + " %"
+                      : "--"}
+                  </p>
+                </span>
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">sunrise</p>
+                  <p className="iconsNo">{sunriseTimeDisplay}</p>
+                </span>
+              </div>
             </div>
             <div id="dataCenter">
               <div id="cloudyStats">{firstWeatherDescription}</div>
@@ -200,46 +202,49 @@ const WeatherApp = () => {
               )}
             </div>
             <div id="dataRight">
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">wind Deg</p>
-                <p className="iconsNo">
-                  {weather?.wind?.deg !== undefined
-                    ? weather?.wind?.deg + " °"
-                    : "--"}
-                </p>
-              </span>
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">wind Speed</p>
-                <p className="iconsNo">
-                  {weather?.wind?.speed !== undefined
-                    ? weather?.wind?.speed + " m/s"
-                    : "--"}
-                </p>
-              </span>
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">wind Gust</p>
-                <p className="iconsNo">
-                  {weather?.wind?.gust !== undefined
-                    ? weather?.wind?.gust + " m/s"
-                    : "--"}
-                </p>
-              </span>
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">timezone</p>
-                <p className="iconsNo">{timezoneCondition}</p>
-              </span>
-              <span className="dataDisplay">
-                <p className="icons"></p>
-                <p className="iconsText">sunset</p>
-                <p className="iconsNo">{sunsetTimeDisplay}</p>
-              </span>
+              <div className="dataInner">
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">wind Deg</p>
+                  <p className="iconsNo">
+                    {weather?.wind?.deg !== undefined
+                      ? weather?.wind?.deg + " °"
+                      : "--"}
+                  </p>
+                </span>
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">wind Speed</p>
+                  <p className="iconsNo">
+                    {weather?.wind?.speed !== undefined
+                      ? weather?.wind?.speed + " m/s"
+                      : "--"}
+                  </p>
+                </span>
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">wind Gust</p>
+                  <p className="iconsNo">
+                    {weather?.wind?.gust !== undefined
+                      ? weather?.wind?.gust + " m/s"
+                      : "--"}
+                  </p>
+                </span>
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">timezone</p>
+                  <p className="iconsNo">{timezoneCondition}</p>
+                </span>
+                <span className="dataDisplay">
+                  <p className="icons"></p>
+                  <p className="iconsText">sunset</p>
+                  <p className="iconsNo">{sunsetTimeDisplay}</p>
+                </span>
+              </div>
             </div>
           </div>
         </div>
+
         <div className="info">
           sunrise and sunset timings are based on local time
         </div>
@@ -277,7 +282,7 @@ const WeatherApp = () => {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
