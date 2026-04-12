@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Image from "next/image";
 import bgImg from "../public/bgImg.jpg";
 import Spline from "@splinetool/react-spline";
@@ -35,10 +34,9 @@ const WeatherApp = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${baseGeo}?q=${query}&appid=${apiKey}`,
-        );
-        setLocation(response.data);
+        const response = await fetch(`${baseGeo}?q=${query}&appid=${apiKey}`);
+        const data = await response.json();
+        setLocation(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -50,10 +48,11 @@ const WeatherApp = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await axios.get(
+        const response = await fetch(
           `${baseUrl}?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`,
         );
-        setWeather(response.data);
+        const data = await response.json();
+        setWeather(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
